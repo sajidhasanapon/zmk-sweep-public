@@ -80,8 +80,8 @@
     //    TAB                                                                                         UP        
         &kp TAB     &trans     &trans     &trans     &trans                   &trans     &trans     &kp UP     &trans     &trans 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
-    //     ESC       CTRL       ALT        CMD        SHIFT                               LEFT       DOWN       RIGHT      BSPC
-        &kp ESC    &kp LCTRL  &kp LALT   &kp LCMD   &kp LSHFT                 &trans    &kp LEFT   &kp DOWN   &kp RIGHT  &kp BSPC 
+    //    ESC        CTRL       ALT        GUI        SHIFT                               LEFT       DOWN       RIGHT      BSPC
+        &kp ESC    &kp LCTRL  &kp LALT   &kp LGUI   &kp LSHFT                 &trans    &kp LEFT   &kp DOWN   &kp RIGHT  &kp BSPC 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
     //                                                                                   
         &trans      &trans     &trans     &trans     &trans                   &trans     &trans     &trans     &trans     &trans 

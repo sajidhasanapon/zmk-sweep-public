@@ -13,8 +13,6 @@
 #define NAV  2
 #define SETT 3
 
-#define AS(keycode) &as LS(keycode) keycode
-
 / {
     behaviors {
         ht: hold_tap {
@@ -46,8 +44,8 @@
     //│      Z      │      X      │      C      │      V      │      B      │             │      N      │      M      │    , <      │     . >     │     / ?     |
            &kp Z         &kp X         &kp C         &kp V         &kp B                       &kp N         &kp M       &kp COMMA      &kp DOT       &kp FSLH
     //╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┤             ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-    //                                               MO(NAV)       LSHIFT                      SPACE        MO(SYM)          
-                                                     &mo NAV     &sk LSHIFT                  &kp SPACE      &mo SYM       
+    //                                               MO(NAV)        RET                        SPACE        MO(SYM)          
+                                                     &mo NAV      &kp RET                    &kp SPACE      &mo SYM       
     //                                          ╰─────────────┴─────────────╯             ╰─────────────┴─────────────╯
         >;
     };
@@ -62,14 +60,14 @@
     // |     1 !    |     2 @    |     3 #    |     4 $    |     5 %    |             |     6 ^    |     7 &    |     8 *    |     9 (    |     0 )    |
            &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                     &kp N6       &kp N7        &kp N8       &kp N9       &kp N0
     // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
-    // |    SHIFT   |    CTRL    |     ALT    |     CMD    |     ` ~    |             |            |            |            |            |     RET    |
-          &sk LSHFT    &sk LCTRL    &sk LALT     &sk LCMD     &kp GRAVE                  &trans        &trans       &trans       &trans       &kp RET
+    // |    ` ~     |    CTRL    |     ALT    |     GUI    |    SHIFT   |             |    SHIFT   |     GUI    |     ALT    |    CTRL    |    BSPC    |
+          &kp GRAVE    &kp LCTRL    &kp LALT     &kp LGUI     &kp LSHFT                 &kp RSHIFT     &kp RGUI    &kp RALT     &kp RCTRL    &kp BSPC
     // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
-    // |     - _    |     = +    |     {      |     [      |     (      |             |     )      |     ]      |     }      |     \ |    |            |
-         &kp MINUS     &kp EQUAL    &kp LBRC     &kp LBKT     &kp LPAR                   &kp RPAR     &kp RBKT     &kp RBRC     &kp BSLH      &trans
+    // |     - _    |     = +    |     {      |     [      |     (      |             |     )      |     ]      |     }      |     \ |    |     / ?    |
+         &kp MINUS     &kp EQUAL    &kp LBRC     &kp LBKT     &kp LPAR                   &kp RPAR     &kp RBKT     &kp RBRC     &kp BSLH     &kp FSLH
     // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
-    //                                           SETTINGS                                   
-                                                 &mo SETT       &trans                    &trans       &trans      
+    //                                           SETTINGS        RET                       SPACE  
+                                                 &mo SETT      &kp RET                   &kp SPACE     &trans      
     //                                        ╰────────────┴────────────╯             ╰────────────┴────────────╯
         >;
     };
@@ -79,17 +77,17 @@
         display-name = "Nav";
         bindings = <
     //╭──────────┬──────────┬──────────┬──────────┬──────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-    //    TAB                                          (                          )                   UP        
-        &kp TAB     &trans     &trans     &trans     &kp LPAR                &kp RPAR    &trans     &kp UP     &trans     &trans 
+    //    TAB                                                                                         UP        
+        &kp TAB     &trans     &trans     &trans     &trans                   &trans     &trans     &kp UP     &trans     &trans 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
-    //   SHIFT       CTRL       ALT        CMD          [                       ]         LEFT       DOWN      RIGHT
-      &sk LSHFT    &sk LCTRL  &sk LALT   &sk LCMD   &kp LBKT                &kp RBKT    &kp LEFT   &kp DOWN  &kp RIGHT    &trans 
+    //               CTRL       ALT        CMD        SHIFT                               LEFT       DOWN      RIGHT       BSPC
+         &trans    &sk LCTRL  &sk LALT   &sk LCMD   &kp LSHFT                 &trans    &kp LEFT   &kp DOWN   &kp RIGHT  &kp BSPC 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
-    //                                                 {                          }                                       RETURN
-        &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans    &kp RET 
+    //                                                                                   
+        &trans      &trans     &trans     &trans     &trans                   &trans     &trans     &trans     &trans     &trans 
     //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
-    //                                                                          ESC     SETTINGS
-                                          &trans     &trans                   &kp ESC   &mo SETT
+    //                                                 RET                      ESC     SETTINGS
+                                          &trans     &kp RET                  &kp ESC   &mo SETT
     //                                 ╰──────────┴──────────╯             ╰──────────┴──────────╯
         >;
     };
